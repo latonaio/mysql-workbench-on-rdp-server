@@ -1,9 +1,12 @@
 # mysql-workbench-on-rdp-server
-mysql-workbench-on-rdp-server はRDP サーバー上にMySQL Workbenchをインストールする手順概要です。
+mysql-workbench-on-rdp-server はRDP サーバー上にMySQL Workbenchをインストールする手順概要です。  
+クラウド上にGUIアプリケーションであるMySQL Workbenchを構築する目的でRDPサーバーを用いています。  
+MySQL WorkbenchのサーバーとMySQLのリモートサーバーは異なるサーバーです。
 
-# AWS 上の RDP サーバー構築
+## クラウド 上の RDP サーバー構築
+RDPサーバー用のVMインスタンスを作成します。
 
-RDP サーバー用のEC2 インスタンスを作成します。
+### AWS上での手順例
 
 - [EC2 インスタンス](https://us-west-2.console.aws.amazon.com/ec2/home?region=us-west-2#Home:)から「インスタンスを起動」を選択します。
 
@@ -19,10 +22,12 @@ RDP サーバー用のEC2 インスタンスを作成します。
 
 - 以上の設定項目を入力したのち、「インスタンスを起動」を選択します。
 
-# RDP サーバーへの接続
+## RDP サーバーへの接続
 
-## AWS における初期設定
-RDP サーバーへの接続方法のAWS における初期設定を行います。
+### クラウド における初期設定
+RDPサーバーへの接続のためのRDPファイルのダウンロードを行い、パスワードを取得します。
+
+#### AWS上での手順例
 
 - 作成したEC2 インスタンスの「インスタンスID」を選択します。
 
@@ -35,19 +40,19 @@ RDP サーバーへの接続方法のAWS における初期設定を行います
 
 - パスワードが表示されるので、コピーし、記録しておきます。
 
-## リモートデスクトップツールにおける初期設定
+### リモートデスクトップツールにおける初期設定
 RDP サーバーへの接続方法のリモートデスクトップツールにおける初期設定を行います。
 
 - ダウンロードしたRDP ファイルとコピーしたパスワードを利用し、各ツールの手順に従って、RDP サーバーに接続します。
 
-### Mac での手順例
+#### Mac での手順例
 
-#### リモートデスクトップツールのインストール
+##### リモートデスクトップツールのインストール
 Microsoft Remote Desktop をローカルPC にダウンロードします。
 
 - [Microsoft Remote Desktop](https://apps.apple.com/jp/app/microsoft-remote-desktop/id1295203466?mt=12)
 
-#### Microsoft Remote Desktop における初期設定
+##### Microsoft Remote Desktop における初期設定
 RDP サーバーへの接続方法のMicrosoft Remote Desktop における初期設定を行います。
 
 - Microsoft Remote Desktop を起動します。
@@ -57,8 +62,8 @@ RDP サーバーへの接続方法のMicrosoft Remote Desktop における初期
 - 登録されたリモートデスクトップをダブルクリックし、コピーしたパスワードを入力し、立ち上げます。
 
 
-# Workbench のインストール
-リモートデスクトップにWorkbench をインストールします。
+## MySQL Workbench のインストール
+リモートデスクトップにMySQL Workbench をインストールします。
 
 - [MySQL Installer](https://dev.mysql.com/downloads/installer/)からmysql-installer-web-community-8.0.30.0.msi の「Download」を選択します。
 
@@ -66,13 +71,13 @@ RDP サーバーへの接続方法のMicrosoft Remote Desktop における初期
 
 - ダウンロードした「mysql-installer-web-community-8.0.30.0.msi」を実行し、指示に従ってSetup を進めます。
 
-- Setup が完了したら、「MySQL Workbench 8.0CE」をクリックし、Workbench を起動します。
+- Setup が完了したら、「MySQL Workbench 8.0CE」をクリックし、MySQL Workbench を起動します。
 
 
 
-# Workbench の基本操作
+## MySQL Workbench の基本操作
 
-## リモートサーバーのMySQL への接続
+### MySQLのリモートサーバーへの接続
 - 「MySQL Connections」横の+マークをクリックします。
 
 - 以下の情報を入力し、OK をクリックします。
@@ -84,10 +89,10 @@ RDP サーバーへの接続方法のMicrosoft Remote Desktop における初期
 	- Password：Username におけるpassword を入力します。
 	- Default Schema：リモートサーバーのデータベース名を入力します。
 
-## データベースの確認
+### データベースの確認
 - 左の「Navigator」タブの下側にある「Schemas」をクリックすると、データベースの一覧が表示されます。
 
-## テーブルの確認
+### テーブルの確認
 - 左の「Schemas」欄からデータベースを選択します。
 
 - 「Tables」をクリックすると、テーブルの一覧が表示されます。
@@ -96,14 +101,14 @@ RDP サーバーへの接続方法のMicrosoft Remote Desktop における初期
 
 - 「Select Rows - Limit 1000」をクリックすると、テーブルの中身が表示されます。
 
-## データベースの作成
+### データベースの作成
 - 上の絵文字が並んだタブの左から4 番目をクリックします。
 
 - 「Name」にデータベース名を入力し、「Apply」をクリックします。
 
 - 再び「Apply」をクリックすると、データベースが作成されます。
 
-## テーブルの作成
+### テーブルの作成
 - 上の絵文字が並んだタブの左から5 番目をクリックします。
 
 - 「Table Name」にテーブル名を入力します。
